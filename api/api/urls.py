@@ -17,6 +17,8 @@ Including another URLconf
 
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 from art import views
 
@@ -24,4 +26,4 @@ from art import views
 urlpatterns = [
         url(r'^admin/', admin.site.urls),
         url(r'^art', views.art, name='art'),
-        ]
+        ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

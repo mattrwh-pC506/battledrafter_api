@@ -1,3 +1,4 @@
+import datetime
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
@@ -7,16 +8,23 @@ from art.models import Art
 
 
 def art(request):
-    body = json.loads(request.body.decode(encoding='UTF-8'))
-    label = body.get("label", "")
-    type = body.get("type", "clipart")
-    user_id = body.get("userId", 0)
+    print ("coming in", request.FILES, request.POST, request.GET)
+    if request.POST:
+        data = json.loads(request.POST.get("data", "{}"))
+        file_name = data.get(
+                "label", str(datetime.datetime.now())
+                )
+        print ("file name!", file_name)
+        type = data.get("type", "clipart")
+        print ("type!", type)
+        user_id = data.get("userId", 1)
+        print ("userId", user_id)
 
-    user = User.objects.get(user_id)
+        f = request.FILES["file"]
+        print ("file", f)
+        with open('media/{}'.format(file_name), 'wb+') as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
 
-    new_art = Art(user=user, label=label, type=type)
-    new_art.save()
 
-    response_body = model_to_dict(new_art)
-
-    return JsonResponse(response_body)
+    return JsonResponse({"message": "success!"})

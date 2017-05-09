@@ -10,5 +10,6 @@ ART_TYPES = (
 class Art(models.Model):
     label = models.CharField(max_length=255)
     type = models.CharField(max_length=15, choices=ART_TYPES)
-    file = models.FileField()
+    file = models.ImageField()
+    file_name = models.CharField(max_length=255, null=True, blank=True)
     user = models.ForeignKey(User)
