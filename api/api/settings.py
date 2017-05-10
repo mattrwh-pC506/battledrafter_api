@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
         "cmd-battle-dev.herokuapp.com",
         "battledrafter-api-dev.herokuapp.com",
         "battledrafter-api-prod.herokuapp.com",
+        "mattrwh.github.io",
         "localhost",
         "127.0.0.1",
         "localhost:4200",
