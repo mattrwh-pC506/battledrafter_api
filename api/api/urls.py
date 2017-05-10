@@ -26,4 +26,5 @@ from art import views
 urlpatterns = [
         url(r'^admin/', admin.site.urls),
         url(r'^art', views.art, name='art'),
+        url(r'^art/(?P<user_id>\w+)/$', views.art,),
         ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
