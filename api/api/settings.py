@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
         "cmd-battle.herokuapp.com",
         "cmd-battle-dev.herokuapp.com",
+        "https://battledrafter-api-dev.herokuapp.com",
+        "https://battledrafter-api-prod.herokuapp.com",
         "localhost",
         "127.0.0.1",
         "localhost:4200",
