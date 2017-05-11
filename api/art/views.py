@@ -34,6 +34,9 @@ def art(request, user_id=None):
         art_post(request)
         return JsonResponse({"message": "success!"})
     else:
-        system_and_user_art = Art.objects.filter(user_id__in=[1, user_id]).values()
-        return JsonResponse({"data": [art for art in system_and_user_art]})
+        type = request.GET.get("type", 0)
+        data = Art.objects.filter(user_id__in=[1, user_id])
+        if type:
+            data = data.filter(type=type)
+        return JsonResponse({"data": [art for art in data.values()]})
 
