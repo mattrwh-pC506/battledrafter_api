@@ -30,13 +30,16 @@ def art_post(request):
     new_art.save()
 
 def art(request, user_id=None):
+    response = JsonResponse({"message": "unknown error"})
+    response.status_code = 500
     if request.POST:
         art_post(request)
-        return JsonResponse({"message": "success!"})
+        response = JsonResponse({"message": "success!"})
     else:
         type = request.GET.get("type", 0)
         data = Art.objects.filter(user_id__in=[1, user_id])
         if type:
             data = data.filter(type=type)
-        return JsonResponse({"data": [art for art in data.values()]})
+        response = JsonResponse({"data": [art for art in data.values()]})
 
+    return response

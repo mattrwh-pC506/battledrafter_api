@@ -32,8 +32,21 @@ ALLOWED_HOSTS = [
         "battledrafter-api-prod.herokuapp.com",
         "mattrwh.github.io",
         "localhost",
-        "127.0.0.1",
+        "http://localhost:4200",
+        "http://localhost:4500",
         "localhost:4200",
+        "127.0.0.1",
+        ]
+
+ALLOWED_CORS_HOSTS = [
+        "cmd-battle.herokuapp.com",
+        "cmd-battle-dev.herokuapp.com",
+        "mattrwh.github.io",
+        "localhost",
+        "http://localhost:4200",
+        "http://localhost:4500",
+        "localhost:4200",
+        "127.0.0.1",
         ]
 
 
@@ -50,7 +63,7 @@ INSTALLED_APPS = [
         'draft.apps.DraftConfig',
         ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -58,6 +71,7 @@ MIDDLEWARE_CLASSES = [
         'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'middleware.cors.cors_middleware',
         ]
 
 ROOT_URLCONF = 'api.urls'
